@@ -64,7 +64,7 @@ class EthernetRelay(object):
         else:
             raise RuntimeError('The ethernet relay did not respond with status code 200.')
 
-    def verify_state(self) -> None:
+    def verify(self) -> None:
         """Verify the state of the relays matches this class instance's state.
 
         Raises:
@@ -99,7 +99,7 @@ class EthernetRelay(object):
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index + 1))
         self.relays[relay_index] = True
-        self.verify_state()
+        self.verify()
 
     def turn_off(self, relay_index: int) -> None:
         """Turn a relay off.
@@ -110,16 +110,16 @@ class EthernetRelay(object):
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index))
         self.relays[relay_index] = False
-        self.verify_state()
+        self.verify()
 
     def all_on(self) -> None:
         """Turn all relays on."""
         requests.get('{}/45'.format(self.url_base))
         self.relays = [True for r in self.relays]
-        self.verify_state()
+        self.verify()
 
     def all_off(self) -> None:
         """Turn all relays off."""
         requests.get('{}/44'.format(self.url_base))
         self.relays = [False for r in self.relays]
-        self.verify_state()
+        self.verify()

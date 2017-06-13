@@ -132,3 +132,12 @@ class TestSainsmart(unittest.TestCase):
         with httmock.HTTMock(mock_relay):
             relay = sainsmart.EthernetRelay()
             self.assertEqual(sum(relay.relays), 8)
+
+    def test_006(self):
+        """Test verify."""
+        with httmock.HTTMock(mock_relay):
+            relay = sainsmart.EthernetRelay()
+            relay.relays[0] = True
+            with self.assertRaises(ValueError):
+                relay.verify()
+
