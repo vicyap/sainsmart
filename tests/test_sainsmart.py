@@ -131,4 +131,4 @@ class TestSainsmart(unittest.TestCase):
         _MOCK = EthernetRelayMock(16, '1010101010101010')
         with httmock.HTTMock(mock_relay):
             relay = sainsmart.EthernetRelay()
-            self.assertEquals(sum(relay.relays), 8)
+            self.assertEqual(sum(relay.relays), 8)
