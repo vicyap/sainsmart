@@ -48,7 +48,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 
 lint: ## check style with flake8
-	flake8 sainsmart tests --max-line-length=119
+	flake8 sainsmart tests
 	pep257 sainsmart
 	mypy sainsmart
 
