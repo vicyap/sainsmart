@@ -17,6 +17,9 @@ sainsmart
      :target: https://pyup.io/repos/github/vicyap/sainsmart/
      :alt: Updates
 
+.. image:: https://coveralls.io/repos/github/vicyap/sainsmart/badge.svg?branch=master
+	:target: https://coveralls.io/github/vicyap/sainsmart?branch=master
+
 
 sainsmart contains code for working with sainsmart products.
 
