@@ -27,7 +27,7 @@ Usage
 -----
 To use EthernetRelay in a project::
 
-    import sainsmart
+    from sainsmart import sainsmart
 
     relay = sainsmart.EthernetRelay()
 
@@ -55,9 +55,34 @@ This can be changed through their web interface.
 
 To use EthernetRelay with a different IP address::
 
-    import sainsmart
+    from sainsmart import sainsmart
 
     relay = sainsmart.EthernetRelay('http://192.168.44.100/30000')
+
+
+Example
+-------
+Here is an example with a real device::
+
+   >>> from sainsmart import sainsmart
+   >>> relay = sainsmart.EthernetRelay()
+   >>> relay.state()
+   [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+   >>> relay.turn_on(0)
+   >>> relay.state()
+   [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+   >>> relay.toggle(0)
+   >>> relay.state()
+   [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+   >>> relay.all_on()
+   >>> relay.state()
+   [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]
+   >>> relay.turn_off(0)
+   >>> relay.state()
+   [False, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]
+   >>> relay.all_off()
+   >>> relay.state()
+   [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False] 
 
 
 * Free software: MIT license
