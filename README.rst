@@ -30,28 +30,25 @@ To use EthernetRelay in a project::
 
     # Access the state of the relays
     # relay.relays is a list of bools
-    relay_states = relay.relays
+    relay_states = relay.state()
 
     # Turn on the relay at index 0.
     relay.turn_on(0)
-    assert relay.relays[0]
 
     # Turn off the relay at index 0.
     relay.turn_off(0)
-    assert relay.relays[0] == False
 
     # Toggle the state of relay 0.
     relay.toggle(0)
-    assert relay.relays[0]
-    relay.toggle(0)
-    assert relay.relays[0] == False
 
     # Turn on all relays.
     relay.all_on()
-    assert all(relay.relays)
 
     # Turn off all relays.
     relay.all_off()
+
+The SainSmart Ethernet Relay defaults ip address: 192.168.1.4/30000.
+This can be changed through their web interface.
 
 To use EthernetRelay with a different IP address::
 
