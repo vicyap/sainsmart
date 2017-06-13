@@ -9,8 +9,8 @@ To use EthernetRelay in a project::
     relay = sainsmart.EthernetRelay()
 
     # Access the state of the relays
-    # relay.relays is a list of bools
-    relay_states = relay.state()
+    # relay.state() is a list of bools
+    relay_state = relay.state()
 
     # Turn on the relay at index 0.
     relay.turn_on(0)
