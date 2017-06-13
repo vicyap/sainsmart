@@ -25,7 +25,7 @@ class EthernetRelay(object):
             relays (:obj:`list` of :obj:`bool`): A list of the on/off state of each relay.
         """
         self.url_base = url_base
-        self.relays = self.get_state()
+        self._relays = self.state()
 
     def _check_index(self, relay_index: int) -> None:
         """Check that relay_index is valid.
@@ -42,11 +42,11 @@ class EthernetRelay(object):
         """
         if relay_index < 0:
             raise IndexError('relay_index={} cannot be negative'.format(relay_index))
-        elif relay_index >= len(self.relays):
+        elif relay_index >= len(self._relays):
             raise IndexError('relay_index={} cannot be greater than {}'.format(
-                relay_index, len(self.relays)))
+                relay_index, len(self._relays)))
 
-    def get_state(self) -> List[bool]:
+    def state(self) -> List[bool]:
         """Get the state of the relays.
 
         Raises:
@@ -68,12 +68,13 @@ class EthernetRelay(object):
         """Verify the state of the relays matches this class instance's state.
 
         Raises:
+            RuntimeError: :func:`EthernetRelay.state()`
             ValueError: If this class instance's state does not match the state
                 of the relays.
         """
-        state = self.get_state()
+        state = self.state()
         index = 0
-        for i, j in zip(self.relays, state):
+        for i, j in zip(self._relays, state):
             if i != j:
                 raise ValueError('Relay at index={} did not match state={}'.format(index, j))
             index += 1
@@ -85,7 +86,7 @@ class EthernetRelay(object):
             relay_index (int): the relay index to toggle.
         """
         self._check_index(relay_index)
-        if self.relays[relay_index]:
+        if self._relays[relay_index]:
             self.turn_off(relay_index)
         else:
             self.turn_on(relay_index)
@@ -98,7 +99,7 @@ class EthernetRelay(object):
         """
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index + 1))
-        self.relays[relay_index] = True
+        self._relays[relay_index] = True
         self.verify()
 
     def turn_off(self, relay_index: int) -> None:
@@ -109,17 +110,17 @@ class EthernetRelay(object):
         """
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index))
-        self.relays[relay_index] = False
+        self._relays[relay_index] = False
         self.verify()
 
     def all_on(self) -> None:
         """Turn all relays on."""
         requests.get('{}/45'.format(self.url_base))
-        self.relays = [True for r in self.relays]
+        self._relays = [True for r in self._relays]
         self.verify()
 
     def all_off(self) -> None:
         """Turn all relays off."""
         requests.get('{}/44'.format(self.url_base))
-        self.relays = [False for r in self.relays]
+        self._relays = [False for r in self._relays]
         self.verify()
