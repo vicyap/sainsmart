@@ -142,7 +142,7 @@ class TestSainsmart(unittest.TestCase):
     def test_005(self):
         """Non-zero init."""
         global _MOCK
-        _MOCK = EthernetRelayMock(num_relays = 16, init_state='1010101010101010')
+        _MOCK = EthernetRelayMock(num_relays=16, init_state='1010101010101010')
         with httmock.HTTMock(mock_relay):
             relay = sainsmart.EthernetRelay()
             self.assertEqual(sum(relay.state()), 8)
