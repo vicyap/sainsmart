@@ -49,6 +49,8 @@ clean-test: ## remove test and coverage artifacts
 
 lint: ## check style with flake8
 	flake8 sainsmart tests --max-line-length=119
+	pep257 sainsmart
+	mypy sainsmart
 
 test: ## run tests quickly with the default Python
 	
