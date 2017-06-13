@@ -12,21 +12,20 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+    'requests==2.17.3'
 ]
 
-setup_requirements = [
-    # TODO(vicyap): put setup requirements (distutils extensions, etc.) here
-]
+setup_requirements = []
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'httmock==1.2.6',
+    'requests==2.17.3'
 ]
 
 setup(
     name='sainsmart',
     version='0.0.1a',
-    description="sainsmart contains code for talking to sainsmart products.",
+    description="sainsmart contains code for working with sainsmart products.",
     long_description=readme + '\n\n' + history,
     author="Victor Yap",
     author_email='victor@vicyap.com',
