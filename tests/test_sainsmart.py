@@ -156,13 +156,13 @@ class TestSainsmart(unittest.TestCase):
                 relay.verify()
 
     def test_007(self):
-        """Test _check_index."""
+        """Test check_index."""
         with httmock.HTTMock(mock_relay):
             relay = sainsmart.EthernetRelay()
             with self.assertRaises(IndexError):
-                relay._check_index(-1)
+                relay.check_index(-1)
             with self.assertRaises(IndexError):
-                relay._check_index(16)
+                relay.check_index(16)
 
     def test_008(self):
         """Test bad status code."""
