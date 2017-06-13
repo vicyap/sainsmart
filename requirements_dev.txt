@@ -11,4 +11,5 @@ requests==2.17.3
 httmock==1.2.6
 pep257==0.7.0
 mypy==0.511
+sphinxcontrib-napoleon==0.6.1
 
