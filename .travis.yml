@@ -31,3 +31,4 @@ python:
 script:
 - tox
 - make coverage
+- make lint
