@@ -21,9 +21,13 @@ deploy:
     python: 3.6
     repo: vicyap/sainsmart
     tags: true
-install: pip install -U tox-travis
+install: pip install -U tox-travis coveralls
 language: python
 python:
 - 3.6
 - 3.5
-script: tox
+script:
+    - tox
+    - make coverage
+after_success:
+    - coveralls
