@@ -27,7 +27,7 @@ class EthernetRelay(object):
         self.url_base = url_base
         self._relays = self.state()
 
-    def _check_index(self, relay_index: int) -> None:
+    def check_index(self, relay_index: int) -> None:
         """Check that relay_index is valid.
 
         This method raises an IndexError if `relay_index` is negative or if
@@ -84,6 +84,9 @@ class EthernetRelay(object):
 
         Args:
             relay_index (int): the relay index to toggle.
+
+        Raises:
+            IndexError: :func:`EthernetRelay._check_index`
         """
         self._check_index(relay_index)
         if self._relays[relay_index]:
@@ -96,6 +99,9 @@ class EthernetRelay(object):
 
         Args:
             relay_index (int): the relay index to turn on.
+
+        Raises:
+            IndexError: :func:`EthernetRelay._check_index`
         """
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index + 1))
@@ -107,6 +113,9 @@ class EthernetRelay(object):
 
         Args:
             relay_index (int): the relay index to turn off.
+
+        Raises:
+            IndexError: :func:`EthernetRelay._check_index`
         """
         self._check_index(relay_index)
         requests.get('{}/{:02d}'.format(self.url_base, 2 * relay_index))
