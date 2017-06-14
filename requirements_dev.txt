@@ -1,3 +1,8 @@
+# project requirements
+requests==2.18.0
+typing==3.6.1
+
+# dev requirements
 bumpversion==0.5.3
 wheel==0.29.0
 watchdog==0.8.3
@@ -7,10 +12,7 @@ coverage==4.4.1
 Sphinx==1.6.2
 cryptography==1.9
 PyYAML==3.12
-requests==2.18.0
 httmock==1.2.6
 pep257==0.7.0
 mypy==0.511
 sphinxcontrib-napoleon==0.6.1
-typing==3.6.1
-
