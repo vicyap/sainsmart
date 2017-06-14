@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='sainsmart',
-    version='0.1.2',
+    version='0.2.0',
     description="sainsmart contains code for working with sainsmart products.",
     long_description=readme + '\n\n' + history,
     author="Victor Yap",
