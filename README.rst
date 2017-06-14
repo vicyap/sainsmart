@@ -27,9 +27,9 @@ Usage
 -----
 To use EthernetRelay in a project::
 
-    from sainsmart import sainsmart
+    from sainsmart import devices
 
-    relay = sainsmart.EthernetRelay()
+    relay = devices.EthernetRelay()
 
     # Access the state of the relays
     # relay.state() is a list of bools
@@ -55,17 +55,17 @@ This can be changed through their web interface.
 
 To use EthernetRelay with a different IP address::
 
-    from sainsmart import sainsmart
+    from sainsmart import devices
 
-    relay = sainsmart.EthernetRelay('http://192.168.44.100/30000')
+    relay = devices.EthernetRelay('http://192.168.44.100/30000')
 
 
 Example
 -------
 Here is an example with a real device::
 
-   >>> from sainsmart import sainsmart
-   >>> relay = sainsmart.EthernetRelay()
+   >>> from sainsmart import devices
+   >>> relay = devices.EthernetRelay()
    >>> relay.state()
    [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
    >>> relay.turn_on(0)

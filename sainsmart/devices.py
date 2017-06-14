@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""SainSmart Module."""
+"""Devices Module."""
 
 import re
 import requests

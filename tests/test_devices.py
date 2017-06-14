@@ -8,7 +8,7 @@ import unittest
 import httmock
 import re
 
-from sainsmart import sainsmart
+from sainsmart import devices
 
 
 _MOCK = None
@@ -82,7 +82,7 @@ def mock_relay(url, request):
             'content': content}
 
 
-class TestSainsmart(unittest.TestCase):
+class TestEthernetRelay(unittest.TestCase):
     """Tests for `sainsmart` package."""
 
     def setUp(self):
@@ -99,12 +99,12 @@ class TestSainsmart(unittest.TestCase):
     def test_000(self):
         """Test init."""
         with httmock.HTTMock(mock_relay):
-            sainsmart.EthernetRelay()
+            devices.EthernetRelay()
 
     def test_001(self):
         """Test all on."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             relay.all_off()
             relay.all_on()
             self.assertTrue(all(relay.state()))
@@ -112,7 +112,7 @@ class TestSainsmart(unittest.TestCase):
     def test_002(self):
         """Test all off."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             relay.all_on()
             relay.all_off()
             self.assertFalse(any(relay.state()))
@@ -120,7 +120,7 @@ class TestSainsmart(unittest.TestCase):
     def test_003(self):
         """Test turn on and turn off."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             for i in range(len(relay.state())):
                 relay.turn_on(i)
             self.assertTrue(all(relay.state()))
@@ -131,7 +131,7 @@ class TestSainsmart(unittest.TestCase):
     def test_004(self):
         """Test toggle."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             for i in range(len(relay.state())):
                 relay.toggle(i)
             self.assertTrue(all(relay.state()))
@@ -144,13 +144,13 @@ class TestSainsmart(unittest.TestCase):
         global _MOCK
         _MOCK = EthernetRelayMock(num_relays=16, init_state='1010101010101010')
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             self.assertEqual(sum(relay.state()), 8)
 
     def test_006(self):
         """Test verify."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             relay._relays[0] = True  # this should be disallowed anyways
             with self.assertRaises(ValueError):
                 relay.verify()
@@ -158,7 +158,7 @@ class TestSainsmart(unittest.TestCase):
     def test_007(self):
         """Test check_index."""
         with httmock.HTTMock(mock_relay):
-            relay = sainsmart.EthernetRelay()
+            relay = devices.EthernetRelay()
             with self.assertRaises(IndexError):
                 relay.check_index(-1)
             with self.assertRaises(IndexError):
@@ -168,10 +168,10 @@ class TestSainsmart(unittest.TestCase):
         """Test bad status code."""
         with httmock.HTTMock(mock_relay):
             with self.assertRaises(RuntimeError):
-                sainsmart.EthernetRelay(url_base='http://192.168.1.4/40000')
+                devices.EthernetRelay(url_base='http://192.168.1.4/40000')
 
     def test_009(self):
         """Test unable to parse content."""
         with httmock.HTTMock(mock_relay):
             with self.assertRaises(RuntimeError):
-                sainsmart.EthernetRelay(url_base='http://192.168.1.4/20000')
+                devices.EthernetRelay(url_base='http://192.168.1.4/20000')
