@@ -20,7 +20,7 @@ sainsmart
         :alt: Updates
 
 .. image:: https://coveralls.io/repos/github/vicyap/sainsmart/badge.svg?branch=master
-	    :target: https://coveralls.io/github/vicyap/sainsmart?branch=master
+        :target: https://coveralls.io/github/vicyap/sainsmart?branch=master
         :alt: Coverage
 
 .. image:: https://ci.appveyor.com/api/projects/status/q1p33rqk0ewcwm29?svg=true
