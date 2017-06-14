@@ -30,6 +30,11 @@ sainsmart
 
 sainsmart contains code for working with sainsmart products.
 
+Install
+-------
+
+``pip install sainsmart``
+
 Usage
 -----
 To use EthernetRelay in a project::
