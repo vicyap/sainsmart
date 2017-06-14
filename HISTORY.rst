@@ -16,4 +16,5 @@ History
 ------------------
 
 * python2.7 support
+* renamed sainsmart.py to devices.py
 
