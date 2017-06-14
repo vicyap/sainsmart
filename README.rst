@@ -12,7 +12,7 @@ sainsmart
         :alt: Travis Build
 
 .. image:: https://readthedocs.org/projects/sainsmart/badge/?version=latest
-        :target: https://sainsmart.readthedocs.io/en/latest/?badge=latest
+        :target: https://sainsmart.readthedocs.io/
         :alt: Documentation Status
 
 .. image:: https://pyup.io/repos/github/vicyap/sainsmart/shield.svg
