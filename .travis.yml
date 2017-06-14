@@ -24,9 +24,9 @@ deploy:
     repo: vicyap/sainsmart
     tags: true
 install:
-    pip install -U tox-travis coveralls flake8 pep257
-    pip install -U mypy || echo "mypy could not be installed"
-    pip install -r requirements.txt
+    - pip install -U tox-travis coveralls flake8 pep257
+    - pip install -U mypy || echo "mypy could not be installed"
+    - pip install -r requirements.txt
 language: python
 python:
 - 3.6
