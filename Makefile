@@ -47,10 +47,18 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-lint: ## check style with flake8
+lint: flake8 pep257 mypy ## static code checkers
+
+flake8:
 	flake8 sainsmart tests
+
+pep257:
 	pep257 sainsmart
-	mypy sainsmart
+
+mypy:
+	@## Travis runs Ubuntu 12.04 which makes it difficult to install mypy,
+	@## so gracefully fail if mypy is not installed.
+	if [ $$(which mypy) != "" ] ; then mypy sainsmart ; else echo "mypy is not installed" ; fi
 
 test: ## run tests quickly with the default Python
 	

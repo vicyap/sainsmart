@@ -23,12 +23,10 @@ deploy:
     python: 3.6
     repo: vicyap/sainsmart
     tags: true
-before_install:
-    sudo apt-get install python3 python3-pip
 install:
-    python -m pip install -U tox-travis coveralls flake8 pep257
-    python3 -m pip install -U mypy
-    python -m pip install -r requirements.txt
+    pip install -U tox-travis coveralls flake8 pep257
+    pip install -U mypy || echo "mypy could not be installed"
+    pip install -r requirements.txt
 language: python
 python:
 - 3.6
