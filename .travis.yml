@@ -24,7 +24,7 @@ deploy:
     repo: vicyap/sainsmart
     tags: true
 install:
-    pip install -U tox-travis coveralls flake8 pep257 mypy
+    pip install -U tox-travis coveralls flake8 pep257 mypy requirements.txt
 language: python
 python:
 - 3.6
