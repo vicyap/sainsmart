@@ -19,7 +19,6 @@ setup_requirements = []
 
 test_requirements = [
     'httmock==1.2.6',
-    'requests==2.17.3'
 ]
 
 setup(
@@ -37,10 +36,12 @@ setup(
     zip_safe=False,
     keywords='sainsmart',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
