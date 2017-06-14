@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.0 (2017-06-14)
+------------------
+* add python 3.4 support
+
 0.2.1 (2017-06-14)
 ------------------
 * add install section to README
