@@ -5,7 +5,7 @@
 import re
 import requests
 
-from typing import List
+from typing import List  # noqa: F401
 
 
 class EthernetRelay(object):
@@ -14,7 +14,8 @@ class EthernetRelay(object):
     <https://www.sainsmart.com/sainsmart-ethernet-control-module-lan-wan-web-server-control-with-rj45-port.html>
     """
 
-    def __init__(self, url_base: str ='http://192.168.1.4/30000') -> None:
+    def __init__(self, url_base='http://192.168.1.4/30000'):
+        # type: (str) -> None
         """Initalize the class.
 
         Kwargs:
@@ -27,7 +28,8 @@ class EthernetRelay(object):
         self.url_base = url_base
         self._relays = self.state()
 
-    def check_index(self, relay_index: int) -> None:
+    def check_index(self, relay_index):
+        # type: (int) -> None
         """Check that relay_index is valid.
 
         This method raises an IndexError if `relay_index` is negative or if
@@ -46,7 +48,8 @@ class EthernetRelay(object):
             raise IndexError('relay_index={} cannot be greater than {}'.format(
                 relay_index, len(self._relays)))
 
-    def state(self) -> List[bool]:
+    def state(self):
+        # type: () -> List[bool]
         """Get the state of the relays.
 
         Raises:
@@ -64,7 +67,8 @@ class EthernetRelay(object):
         else:
             raise RuntimeError('The ethernet relay did not respond with status code 200.')
 
-    def verify(self) -> None:
+    def verify(self):
+        # type: () -> None
         """Verify the state of the relays matches this class instance's state.
 
         Raises:
@@ -79,7 +83,8 @@ class EthernetRelay(object):
                 raise ValueError('Relay at index={} did not match state={}'.format(index, j))
             index += 1
 
-    def toggle(self, relay_index: int) -> None:
+    def toggle(self, relay_index):
+        # type: (int) -> None
         """Toggle the state of a relay.
 
         Args:
@@ -94,7 +99,8 @@ class EthernetRelay(object):
         else:
             self.turn_on(relay_index)
 
-    def turn_on(self, relay_index: int) -> None:
+    def turn_on(self, relay_index):
+        # type: (int) -> None
         """Turn a relay on.
 
         Args:
@@ -108,7 +114,8 @@ class EthernetRelay(object):
         self._relays[relay_index] = True
         self.verify()
 
-    def turn_off(self, relay_index: int) -> None:
+    def turn_off(self, relay_index):
+        # type: (int) -> None
         """Turn a relay off.
 
         Args:
@@ -122,13 +129,15 @@ class EthernetRelay(object):
         self._relays[relay_index] = False
         self.verify()
 
-    def all_on(self) -> None:
+    def all_on(self):
+        # type: () -> None
         """Turn all relays on."""
         requests.get('{}/45'.format(self.url_base))
         self._relays = [True for r in self._relays]
         self.verify()
 
-    def all_off(self) -> None:
+    def all_off(self):
+        # type: () -> None
         """Turn all relays off."""
         requests.get('{}/44'.format(self.url_base))
         self._relays = [False for r in self._relays]
