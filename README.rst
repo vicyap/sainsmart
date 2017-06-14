@@ -5,20 +5,27 @@ sainsmart
 
 .. image:: https://img.shields.io/pypi/v/sainsmart.svg
         :target: https://pypi.python.org/pypi/sainsmart
+        :alt: PyPi
 
 .. image:: https://img.shields.io/travis/vicyap/sainsmart.svg
         :target: https://travis-ci.org/vicyap/sainsmart
+        :alt: Travis Build
 
 .. image:: https://readthedocs.org/projects/sainsmart/badge/?version=latest
         :target: https://sainsmart.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 .. image:: https://pyup.io/repos/github/vicyap/sainsmart/shield.svg
-     :target: https://pyup.io/repos/github/vicyap/sainsmart/
-     :alt: Updates
+        :target: https://pyup.io/repos/github/vicyap/sainsmart/
+        :alt: Updates
 
 .. image:: https://coveralls.io/repos/github/vicyap/sainsmart/badge.svg?branch=master
-	:target: https://coveralls.io/github/vicyap/sainsmart?branch=master
+	    :target: https://coveralls.io/github/vicyap/sainsmart?branch=master
+        :alt: Coverage
+
+.. image:: https://ci.appveyor.com/api/projects/status/q1p33rqk0ewcwm29?svg=true
+        :target: https://ci.appveyor.com/project/victor/sainsmart/branch/master
+        :alt: Windows Build
 
 
 sainsmart contains code for working with sainsmart products.
