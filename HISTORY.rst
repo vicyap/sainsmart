@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.1 (2017-06-20)
+------------------
+* make the regex for getting the state of the relays more specific
+
 0.3.0 (2017-06-14)
 ------------------
 * add python 3.4 support
