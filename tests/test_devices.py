@@ -12,7 +12,8 @@ from sainsmart import devices
 
 
 _MOCK = None
-_99 = ' <small><a href="http://192.168.1.4/30000"></a></small><a href="http://192.168.1.4/30000/{}">{}</a><p>'
+_99_30000 = ' <small><a href="http://192.168.1.4/30000"></a></small><a href="http://192.168.1.4/30000/{}">{}</a><p>'
+_99_30001 = ' <small><a href="http://192.168.1.4/30000"></a></small><a href="http://192.168.1.4/30000/{}192.168.1.4&PassWord">{}192.168.1.4&PassWord</a><p>'  # NOQA
 
 
 class EthernetRelayMock(object):
@@ -52,6 +53,7 @@ def mock_relay(url, request):
     """Mocks requests.
 
     if port is 30000, act normal.
+    if port is 30001, act normal but with a messy state.
 
     if port is 20000, return status_code=200 but bad content
 
@@ -64,7 +66,7 @@ def mock_relay(url, request):
     num = int(match.groupdict()['num'])
     if port == 30000:
         if num == 99:
-            content = _99.format(_MOCK.get_state_str(), _MOCK.get_state_str()).encode('ascii')
+            content = _99_30000.format(_MOCK.get_state_str(), _MOCK.get_state_str()).encode('ascii')
         elif num == 44:
             _MOCK.all_off()
         elif num == 45:
@@ -74,6 +76,9 @@ def mock_relay(url, request):
                 _MOCK.turn_on(int(num / 2))
             else:
                 _MOCK.turn_off(int(num / 2))
+    elif port == 30001:
+        if num == 99:
+            content = _99_30001.format(_MOCK.get_state_str(), _MOCK.get_state_str()).encode('ascii')
     elif port == 40000:
         status_code = 404
     elif port == 20000:
@@ -97,7 +102,7 @@ class TestEthernetRelay(unittest.TestCase):
         _MOCK = None
 
     def test_000(self):
-        """Test init."""
+        """Test init with 30000."""
         with httmock.HTTMock(mock_relay):
             devices.EthernetRelay()
 
@@ -175,3 +180,9 @@ class TestEthernetRelay(unittest.TestCase):
         with httmock.HTTMock(mock_relay):
             with self.assertRaises(RuntimeError):
                 devices.EthernetRelay(url_base='http://192.168.1.4/20000')
+
+    def test_010(self):
+        """Test init with 30001."""
+        with httmock.HTTMock(mock_relay):
+            relay = devices.EthernetRelay(url_base='http://192.168.1.4/30001')
+            self.assertTrue(len(relay.state()), 16)

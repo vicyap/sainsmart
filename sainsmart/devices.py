@@ -58,7 +58,16 @@ class EthernetRelay(object):
         """
         r = requests.get('{}/99'.format(self.url_base))
         if r.status_code == 200:
-            match = re.search(r'<a.*>(?P<state_bits>[01]+)</a>', r.content.decode('ascii'))
+            content = r.content.decode('ascii')
+            re.sub('192.168\.\d+\.\d+', '', content)
+            regex = re.compile(
+                r'''
+                <a.*>
+                (?P<state_bits>[01]+)
+                .*</a>
+                ''',
+                re.VERBOSE)
+            match = regex.search(content)
             if match:
                 state_bits_str = match.groupdict()['state_bits']
                 return [s == '1' for s in state_bits_str]
