@@ -8,5 +8,5 @@ Sphinx==1.6.2
 PyYAML==3.12
 httmock==1.2.6
 pep257==0.7.0
-mypy==0.511
+mypy==0.540
 sphinxcontrib-napoleon==0.6.1
