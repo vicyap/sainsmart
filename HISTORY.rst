@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.2 (2018-05-05)
+------------------
+* Update the packages requests and typing with new versions
+
 0.3.1 (2017-06-20)
 ------------------
 * make the regex for getting the state of the relays more specific
