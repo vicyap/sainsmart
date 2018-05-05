@@ -12,8 +12,8 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'requests==2.18.0',
-    'typing==3.6.1'
+    'requests==2.18.4',
+    'typing==3.6.4'
 ]
 
 setup_requirements = []
@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='sainsmart',
-    version='0.3.1',
+    version='0.3.2',
     description="sainsmart contains code for working with sainsmart products.",
     long_description=readme + '\n\n' + history,
     author="Victor Yap",
